@@ -2,39 +2,33 @@
   $sports = array_to_object([
       [
           'href' => '#',
-          'name' => 'Aerobic',
           'class' => 'sport-1',
-          'image' => 'background-image: url(' . asset('images/sports/sport-1.jpg') . ');',
+          'name' => 'Aerobic',
       ],
       [
           'href' => '#',
-          'name' => 'Sports For Beginners',
           'class' => 'sport-2',
-          'image' => 'background-image: url(' . asset('images/sports/sport-2.jpg') . ');',
+          'name' => 'Sports For Beginners',
       ],
       [
           'href' => '#',
-          'name' => 'Sports For Pregnant',
           'class' => 'sport-3',
-          'image' => 'background-image: url(' . asset('images/sports/sport-3.jpg') . ');',
+          'name' => 'Sports For Pregnant',
       ],
       [
           'href' => '#',
-          'name' => 'Sports For Menstruation',
           'class' => 'sport-4',
-          'image' => 'background-image: url(' . asset('images/sports/sport-4.jpg') . ');',
+          'name' => 'Sports For Menstruation',
       ],
       [
           'href' => '#',
-          'name' => 'Weightlifting',
           'class' => 'sport-5',
-          'image' => 'background-image: url(' . asset('images/sports/sport-5.jpg') . ');',
+          'name' => 'Weightlifting',
       ],
       [
           'href' => '#',
-          'name' => 'Pilates',
           'class' => 'sport-6',
-          'image' => 'background-image: url(' . asset('images/sports/sport-6.jpg') . ');',
+          'name' => 'Pilates',
       ],
   ]);
 @endphp
