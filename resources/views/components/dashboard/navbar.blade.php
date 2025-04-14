@@ -33,6 +33,7 @@
             <p class="mb-1 text-black">{{ Auth::user()->name }}</p>
           </div>
         </a>
+
         <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
           <a class="dropdown-item" href="#">
             <i class="mdi mdi-cached me-2 text-success"></i>
@@ -52,6 +53,11 @@
         </div>
       </li>
     </ul>
+
+    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+      data-toggle="offcanvas">
+      <span class="mdi mdi-menu"></span>
+    </button>
   </div>
 </nav>
 
