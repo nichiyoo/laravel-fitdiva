@@ -13,38 +13,30 @@
   <link rel="stylesheet" href="{{ asset('dashboard/vendors/ti-icons/css/themify-icons.css') }}">
   <link rel="stylesheet" href="{{ asset('dashboard/vendors/css/vendor.bundle.base.css') }}">
   <link rel="stylesheet" href="{{ asset('dashboard/vendors/font-awesome/css/font-awesome.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('dashboard/vendors/font-awesome/css/font-awesome.min.css') }}" />
+  <link rel="stylesheet" href="{{ asset('dashboard/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css') }}">
   <link rel="stylesheet" href="{{ asset('dashboard/css/style.css') }}">
   @stack('styles')
 </head>
 
 <body>
   <div class="container-scroller">
-    <div class="container-fluid page-body-wrapper full-page-wrapper">
-      <div class="content-wrapper d-flex align-items-center auth">
-        <div class="row flex-grow">
-          <div class="col-lg-4 mx-auto">
-            <div class="auth-form-light text-left p-5">
-              <div class="brand-logo">
-                <a href="{{ route('landing.index') }}">
-                  <x-dashboard.logo />
-                </a>
-              </div>
-              {{ $slot }}
-            </div>
-          </div>
-        </div>
-      </div>
+    <x-dashboard.navbar />
+    <div class="container-fluid page-body-wrapper">
+      <x-dashboard.sidebar />
+      {{ $slot }}
     </div>
   </div>
 
   <!-- Scripts -->
   <script src="{{ asset('dashboard/vendors/js/vendor.bundle.base.js') }}"></script>
+  <script src="{{ asset('dashboard/vendors/chart.js/chart.umd.js') }}"></script>
+  <script src="{{ asset('dashboard/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
   <script src="{{ asset('dashboard/js/off-canvas.js') }}"></script>
   <script src="{{ asset('dashboard/js/misc.js') }}"></script>
   <script src="{{ asset('dashboard/js/settings.js') }}"></script>
   <script src="{{ asset('dashboard/js/todolist.js') }}"></script>
   <script src="{{ asset('dashboard/js/jquery.cookie.js') }}"></script>
+  <script src="{{ asset('dashboard/js/dashboard.js') }}"></script>
   @stack('scripts')
 </body>
-
-</html>
