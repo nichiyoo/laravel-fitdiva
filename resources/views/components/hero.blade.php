@@ -1,14 +1,9 @@
-@props(['title' => 'Title'])
+@props([
+    'title' => 'Title',
+    'background' => asset('images/hero.jpg'),
+])
 
-@push('styles')
-  <style>
-    .hero {
-      background-image: url({{ asset('images/hero.jpg') }})
-    }
-  </style>
-@endpush
-
-<section class="hero-wrap js-fullheight hero">
+<section class="hero-wrap js-fullheight hero" style="background-image: url({{ $background }});">
   <div class="overlay"></div>
   <div class="container">
     <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">

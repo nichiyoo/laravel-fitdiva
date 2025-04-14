@@ -1,5 +1,5 @@
 <x-landing-layout>
-  <x-hero title="About Us">
+  <x-hero title="Explore Our Classes">
     <x-slot name="breadcrumbs">
       <span class="mr-2">
         <a href="{{ route('landing.index') }}">Home</a>
