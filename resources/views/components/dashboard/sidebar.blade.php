@@ -24,38 +24,41 @@
     @php
       $menus = array_to_object([
           [
-              'id' => 'ui-basic',
-              'label' => 'Basic UI Elements',
-              'icon' => 'mdi mdi-crosshairs-gps',
+              'id' => 'users',
+              'label' => 'Manage Users',
+              'icon' => 'mdi mdi-account-multiple',
               'menus' => [
-                  ['label' => 'Buttons', 'href' => 'pages/ui-features/buttons.html'],
-                  ['label' => 'Dropdowns', 'href' => 'pages/ui-features/dropdowns.html'],
-                  ['label' => 'Typography', 'href' => 'pages/ui-features/typography.html'],
+                  ['label' => 'List Users', 'href' => route('landing.index')],
+                  ['label' => 'List Admins', 'href' => route('landing.index')],
+                  ['label' => 'Create User', 'href' => route('landing.index')],
               ],
           ],
           [
-              'id' => 'icons',
-              'label' => 'Icons',
-              'icon' => 'mdi mdi-contacts',
-              'menus' => [['label' => 'Font Awesome', 'href' => 'pages/icons/font-awesome.html']],
+              'id' => 'classs',
+              'label' => 'Manage Classs',
+              'icon' => 'mdi mdi-basketball',
+              'menus' => [
+                  ['label' => 'List Classes', 'href' => route('landing.index')],
+                  ['label' => 'Create Class', 'href' => route('landing.index')],
+              ],
           ],
           [
-              'id' => 'forms',
-              'label' => 'Forms',
-              'icon' => 'mdi mdi-format-list-bulleted',
-              'menus' => [['label' => 'Form Elements', 'href' => 'pages/forms/basic_elements.html']],
+              'id' => 'exercises',
+              'label' => 'Manage Exercises',
+              'icon' => 'mdi mdi-dumbbell',
+              'menus' => [
+                  ['label' => 'List Exercises', 'href' => route('landing.index')],
+                  ['label' => 'Create Exercise', 'href' => route('landing.index')],
+              ],
           ],
           [
-              'id' => 'charts',
-              'label' => 'Charts',
-              'icon' => 'mdi mdi-chart-bar',
-              'menus' => [['label' => 'ChartJs', 'href' => 'pages/charts/chartjs.html']],
-          ],
-          [
-              'id' => 'tables',
-              'label' => 'Tables',
-              'icon' => 'mdi mdi-table-large',
-              'menus' => [['label' => 'Basic table', 'href' => 'pages/tables/basic-table.html']],
+              'id' => 'articles',
+              'label' => 'Manage Articles',
+              'icon' => 'mdi mdi-post-outline',
+              'menus' => [
+                  ['label' => 'List Articles', 'href' => route('landing.index')],
+                  ['label' => 'Create Article', 'href' => route('landing.index')],
+              ],
           ],
       ]);
     @endphp
