@@ -24,7 +24,12 @@
     <x-dashboard.navbar />
     <div class="container-fluid page-body-wrapper">
       <x-dashboard.sidebar />
-      {{ $slot }}
+      <div class="main-panel">
+        <div class="content-wrapper">
+          {{ $slot }}
+        </div>
+        <x-dashboard.footer />
+      </div>
     </div>
   </div>
 

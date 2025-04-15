@@ -15,7 +15,7 @@
     </li>
 
     <li class="nav-item">
-      <a class="nav-link" href="{{ route('home') }}">
+      <a class="nav-link" href="{{ route('admin.dashboard') }}">
         <span class="menu-title">Dashboard</span>
         <i class="mdi mdi-home menu-icon"></i>
       </a>
@@ -28,9 +28,10 @@
               'label' => 'Manage Users',
               'icon' => 'mdi mdi-account-multiple',
               'menus' => [
-                  ['label' => 'List Users', 'href' => route('landing.index')],
-                  ['label' => 'List Admins', 'href' => route('landing.index')],
-                  ['label' => 'Create User', 'href' => route('landing.index')],
+                  ['label' => 'List Users', 'href' => route('admin.users.index')],
+                  ['label' => 'List Customer', 'href' => route('admin.users.index', ['role' => 'Customer'])],
+                  ['label' => 'List Admins', 'href' => route('admin.users.index', ['role' => 'Administrator'])],
+                  ['label' => 'Create User', 'href' => route('admin.users.create')],
               ],
           ],
           [
@@ -38,8 +39,8 @@
               'label' => 'Manage Classs',
               'icon' => 'mdi mdi-basketball',
               'menus' => [
-                  ['label' => 'List Classes', 'href' => route('landing.index')],
-                  ['label' => 'Create Class', 'href' => route('landing.index')],
+                  ['label' => 'List Classes', 'href' => route('admin.courses.index')],
+                  ['label' => 'Create Class', 'href' => route('admin.courses.create')],
               ],
           ],
           [
@@ -47,8 +48,8 @@
               'label' => 'Manage Exercises',
               'icon' => 'mdi mdi-dumbbell',
               'menus' => [
-                  ['label' => 'List Exercises', 'href' => route('landing.index')],
-                  ['label' => 'Create Exercise', 'href' => route('landing.index')],
+                  ['label' => 'List Exercises', 'href' => route('admin.exercises.index')],
+                  ['label' => 'Create Exercise', 'href' => route('admin.exercises.create')],
               ],
           ],
           [
@@ -56,8 +57,10 @@
               'label' => 'Manage Articles',
               'icon' => 'mdi mdi-post-outline',
               'menus' => [
-                  ['label' => 'List Articles', 'href' => route('landing.index')],
-                  ['label' => 'Create Article', 'href' => route('landing.index')],
+                  ['label' => 'List Categories', 'href' => route('admin.categories.index')],
+                  ['label' => 'Create Category', 'href' => route('admin.categories.create')],
+                  ['label' => 'List Articles', 'href' => route('admin.articles.index')],
+                  ['label' => 'Create Article', 'href' => route('admin.articles.create')],
               ],
           ],
       ]);

@@ -35,13 +35,6 @@
         </a>
 
         <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-          <a class="dropdown-item" href="#">
-            <i class="mdi mdi-cached me-2 text-success"></i>
-            <span>Activity Log</span>
-          </a>
-
-          <div class="dropdown-divider"></div>
-
           <a id="logout-button" class="dropdown-item" hrhref="{{ route('logout') }}">
             <i class="mdi mdi-logout me-2 text-primary"></i>
             <span>Signout</span>

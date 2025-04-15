@@ -24,10 +24,12 @@ Route::middleware('auth')
   ->prefix('admin')
   ->as('admin.')
   ->group(function () {
-    Route::get('/', fn() => view('home'))->name('dashboard');
+    Route::get('/', fn() => view('dashboard.index'))->name('dashboard');
     Route::resource('users', UserController::class);
     Route::resource('courses', CourseController::class);
     Route::resource('exercises', ExerciseController::class);
     Route::resource('articles', ArticleController::class);
+    Route::resource('categories', CategoryController::class);
+    Route::resource('categories.articles', ArticleController::class);
 });
 
