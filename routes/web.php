@@ -7,15 +7,16 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\ExerciseController;
 use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\CategoryController;
 
 Route::get('/', fn() => redirect()->route('landing.index'))->name('welcome');
 Route::get('/dashboard', fn() => redirect()->route('admin.dashboard'))->name('home');
 
 Route::as('landing.')->group(function () {
-    Route::get('/', fn() => view('landing.index'))->name('index');
-    Route::get('/classes', fn() => view('landing.classes'))->name('classes');
-    Route::get('/about', fn() => view('landing.about'))->name('about');
-    Route::get('/blog', fn() => view('landing.blog'))->name('blog');
+  Route::get('/', fn() => view('landing.index'))->name('index');
+  Route::get('/classes', fn() => view('landing.classes'))->name('classes');
+  Route::get('/about', fn() => view('landing.about'))->name('about');
+  Route::get('/blog', fn() => view('landing.blog'))->name('blog');
 });
 
 Auth::routes();
@@ -30,6 +31,4 @@ Route::middleware('auth')
     Route::resource('exercises', ExerciseController::class);
     Route::resource('articles', ArticleController::class);
     Route::resource('categories', CategoryController::class);
-    Route::resource('categories.articles', ArticleController::class);
-});
-
+  });

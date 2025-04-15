@@ -22,7 +22,7 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">
-            User List
+            {{ $role . ' ' . 'List' }}
           </h4>
           <div class="table-responsive">
             <table class="table">
@@ -38,8 +38,10 @@
                 @foreach ($users as $user)
                   <tr>
                     <td>
-                      <x-ui.avatar name="{{ $user->name }}" />
-                      <span class="ms-2">{{ $user->name }}</span>
+                      <a href="{{ route('admin.users.edit', $user) }}" class="text-primary text-decoration-none">
+                        <x-ui.avatar name="{{ $user->name }}" />
+                        <span class="ms-2">{{ $user->name }}</span>
+                      </a>
                     </td>
                     <td>{{ $user->email }}</td>
                     <td><label class="badge badge-primary">{{ $user->role }}</label></td>

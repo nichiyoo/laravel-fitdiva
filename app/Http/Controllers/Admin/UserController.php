@@ -10,68 +10,85 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(Request $request)
-    {
-        $role = $request->query('role', 'all');
-        $users = User::query()
-            ->when($role !== 'all', function ($query) use ($role) {
-                $query->where('role', $role);
-            })
-            ->paginate(10);
+  /**
+   * Display a listing of the resource.
+   */
+  public function index(Request $request)
+  {
+    $role = $request->query('role', 'User');
+    $users = User::query()
+      ->when($role !== 'User', function ($query) use ($role) {
+        $query->where('role', $role);
+      })
+      ->paginate(10);
 
-        return view('dashboard.users.index', [
-            'users' => $users,
-        ]);
-    }
+    return view('dashboard.users.index', [
+      'users' => $users,
+      'role' => $role,
+    ]);
+  }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+  /**
+   * Show the form for creating a new resource.
+   */
+  public function create()
+  {
+    return view('dashboard.users.create');
+  }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreUserRequest $request)
-    {
-        //
-    }
+  /**
+   * Store a newly created resource in storage.
+   */
+  public function store(StoreUserRequest $request)
+  {
+    $validated = $request->validated();
+    User::create($validated);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(User $user)
-    {
-        //
-    }
+    return redirect()
+      ->route('admin.users.index')
+      ->with('success', 'User created successfully.');
+  }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(User $user)
-    {
-        //
-    }
+  /**
+   * Display the specified resource.
+   */
+  public function show(User $user)
+  {
+    //
+  }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateUserRequest $request, User $user)
-    {
-        //
-    }
+  /**
+   * Show the form for editing the specified resource.
+   */
+  public function edit(User $user)
+  {
+    return view('dashboard.users.edit', [
+      'user' => $user,
+    ]);
+  }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(User $user)
-    {
-        //
-    }
+  /**
+   * Update the specified resource in storage.
+   */
+  public function update(UpdateUserRequest $request, User $user)
+  {
+    $validated = $request->validated();
+    $user->update($validated);
+
+    return redirect()
+      ->route('admin.users.index')
+      ->with('success', 'User updated successfully.');
+  }
+
+  /**
+   * Remove the specified resource from storage.
+   */
+  public function destroy(User $user)
+  {
+    $user->delete();
+
+    return redirect()
+      ->route('admin.users.index')
+      ->with('success', 'User deleted successfully.');
+  }
 }

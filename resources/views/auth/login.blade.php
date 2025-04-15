@@ -6,9 +6,8 @@
     <div class="form-group @error('email') has-danger @enderror">
       <input type="email" class="form-control form-control-lg" id="email" name="email" value="{{ old('email') }}"
         autocomplete="email" autofocus placeholder="Your email address" required>
-
       @error('email')
-        <span class="text-danger" role="alert">{{ $message }}</span>
+        <span class="text-danger" role="alert">{{ $errors->first('email') }}</span>
       @enderror
     </div>
 
