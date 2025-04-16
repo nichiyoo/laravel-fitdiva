@@ -88,6 +88,10 @@
           <h2 class="mb-1">Articles to Move You Forward</h2>
         </div>
       </div>
-      <x-article-grid />
+      <x-article-grid :articles="$articles" />
+
+      <a href="{{ route('landing.articles') }}" class="btn btn-primary p-3 px-4">
+        See All Articles
+      </a>
   </section>
 </x-landing-layout>

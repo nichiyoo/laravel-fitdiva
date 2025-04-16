@@ -49,6 +49,10 @@
               </tbody>
             </table>
           </div>
+
+          <div class="mt-5">
+            {{ $articles->links() }}
+          </div>
         </div>
       </div>
     </div>

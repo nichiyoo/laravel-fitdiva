@@ -32,9 +32,9 @@
               'hidden' => false,
           ],
           [
-              'label' => 'Blog',
-              'href' => route('landing.blog'),
-              'active' => request()->routeIs('landing.blog'),
+              'label' => 'Articles',
+              'href' => route('landing.articles'),
+              'active' => request()->routeIs('landing.articles'),
               'hidden' => false,
           ],
           [

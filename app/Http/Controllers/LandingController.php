@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Category;
 use App\Models\Course;
+use Illuminate\Http\Request;
 
 class LandingController extends Controller
 {
@@ -13,9 +15,11 @@ class LandingController extends Controller
   public function index()
   {
     $courses = Course::all();
+    $articles = Article::take(3)->get();
 
     return view('landing.index', [
       'courses' => $courses,
+      'articles' => $articles,
     ]);
   }
 
@@ -38,8 +42,15 @@ class LandingController extends Controller
   {
     $course = Course::where('slug', $slug)->firstOrFail();
 
+    $courses = Course::all();
+    $articles = Article::take(3)->get();
+    $categories = Category::all();
+
     return view('landing.course', [
       'course' => $course,
+      'courses' => $courses,
+      'articles' => $articles,
+      'categories' => $categories,
     ]);
   }
 
@@ -54,12 +65,39 @@ class LandingController extends Controller
   /**
    * Display blog page.
    */
-  public function blog()
+  public function articles(Request $request)
   {
-    $articles = Article::all();
+    $category = $request->input('category', null);
+    isset($category) && $category = Category::where('slug', $category)->first();
 
-    return view('landing.blog', [
+    $articles = Article::query()
+      ->when($category, function ($query) use ($category) {
+        return $query->where('category_id', $category->id);
+      })
+      ->with('category')
+      ->paginate(6);
+
+    return view('landing.articles', [
       'articles' => $articles,
+    ]);
+  }
+
+  /**
+   * Display article page.
+   */
+  public function article(String $slug)
+  {
+    $article = Article::where('slug', $slug)->firstOrFail();
+
+    $courses = Course::all();
+    $articles = Article::take(3)->get();
+    $categories = Category::all();
+
+    return view('landing.article', [
+      'article' => $article,
+      'courses' => $courses,
+      'articles' => $articles,
+      'categories' => $categories,
     ]);
   }
 }

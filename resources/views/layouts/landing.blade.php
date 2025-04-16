@@ -24,7 +24,25 @@
   <link rel="stylesheet" href="{{ asset('landing/css/jquery.timepicker.css') }}">
   <link rel="stylesheet" href="{{ asset('landing/css/flaticon.css') }}">
   <link rel="stylesheet" href="{{ asset('landing/css/icomoon.css') }}">
+  <link rel="stylesheet" href="{{ asset('landing/css/plyr.min.css') }}">
   <link rel="stylesheet" href="{{ asset('landing/css/style.css') }}">
+  <style>
+    .page-item.active .page-link {
+      background-color: #d291bc;
+      border-color: #d291bc;
+    }
+
+    .page-link,
+    .page-link:hover {
+      color: #d291bc;
+    }
+
+    .page-link:hover {
+      background-color: #fff;
+      box-shadow: 0 0 0 0.2rem rgba(210, 153, 188, 0.25);
+      -webkit-box-shadow: 0 0 0 0.2rem rgba(210, 153, 188, 0.25);
+    }
+  </style>
   @stack('styles')
 </head>
 
@@ -51,7 +69,7 @@
   <script src="{{ asset('landing/js/bootstrap-datepicker.js') }}"></script>
   <script src="{{ asset('landing/js/jquery.timepicker.min.js') }}"></script>
   <script src="{{ asset('landing/js/scrollax.min.js') }}"></script>
-  <script src="{{ asset('landing/js/google-map.js') }}"></script>
+  <script src="{{ asset('landing/js/plyr.min.js') }}"></script>
   <script src="{{ asset('landing/js/main.js') }}"></script>
   @stack('scripts')
 </body>

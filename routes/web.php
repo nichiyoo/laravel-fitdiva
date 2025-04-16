@@ -21,7 +21,8 @@ Route::controller(LandingController::class)
     Route::get('/courses', 'courses')->name('courses');
     Route::get('/courses/{course:slug}', 'course')->name('course');
     Route::get('/about', 'about')->name('about');
-    Route::get('/blog', 'blog')->name('blog');
+    Route::get('/articles', 'articles')->name('articles');
+    Route::get('/articles/{article:slug}', 'article')->name('article');
   });
 
 Auth::routes();

@@ -14,7 +14,8 @@ class ExerciseController extends Controller
    */
   public function index()
   {
-    $exercises = Exercise::all();
+    $exercises = Exercise::paginate(10);
+
     return view('dashboard.exercises.index', [
       'exercises' => $exercises,
     ]);

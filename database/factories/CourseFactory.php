@@ -27,6 +27,7 @@ class CourseFactory extends Factory
       'description' => fake()->paragraph(),
       'slug' => Str::slug($name),
       'image' => fake()->imageUrl(),
+      'video_url' => fake()->url(),
       'content' => $paragraphs,
     ];
   }

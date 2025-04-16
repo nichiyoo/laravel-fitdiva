@@ -16,6 +16,9 @@
           <h2 class="mb-1">Articles to Move You Forward</h2>
         </div>
       </div>
-      <x-article-grid />
+
+      <x-article-grid :articles="$articles" />
+
+      {{ $articles->links() }}
   </section>
 </x-landing-layout>

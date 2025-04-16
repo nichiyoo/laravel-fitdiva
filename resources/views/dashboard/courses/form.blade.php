@@ -22,6 +22,15 @@
     @enderror
   </div>
 
+  <div class="form-group @error('description') has-danger @enderror">
+    <label for="description">Short Description</label>
+    <textarea class="form-control" id="description" name="description" rows="3"
+      placeholder="Brief summary of the course">{{ old('description', $course->description ?? '') }}</textarea>
+    @error('description')
+      <span class="text-danger" role="alert">{{ $message }}</span>
+    @enderror
+  </div>
+
   <div class="form-group @error('image') has-danger @enderror">
     <label for="image">Cover Image</label>
     <input type="file" class="form-control" id="image" name="image">
@@ -30,11 +39,11 @@
     @enderror
   </div>
 
-  <div class="form-group @error('description') has-danger @enderror">
-    <label for="description">Short Description</label>
-    <textarea class="form-control" id="description" name="description" rows="3"
-      placeholder="Brief summary of the course">{{ old('description', $course->description ?? '') }}</textarea>
-    @error('description')
+  <div class="form-group @error('video_url') has-danger @enderror">
+    <label for="video_url">Video URL</label>
+    <input type="text" class="form-control" id="video_url" name="video_url" placeholder="YouTube or Vimeo URL"
+      value="{{ old('video_url', $course->video_url ?? '') }}">
+    @error('video_url')
       <span class="text-danger" role="alert">{{ $message }}</span>
     @enderror
   </div>

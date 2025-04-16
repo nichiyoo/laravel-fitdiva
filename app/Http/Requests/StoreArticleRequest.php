@@ -26,6 +26,7 @@ class StoreArticleRequest extends FormRequest
       'title' => ['required', 'string', 'max:255', Rule::unique('articles', 'title')],
       'slug' => ['required', 'string', 'max:255', Rule::unique('articles', 'slug')],
       'category_id' => ['required', 'exists:categories,id'],
+      'excerpt' => ['required', 'string'],
       'content' => ['required', 'string'],
       'image' => ['nullable', 'image', 'max:1024'],
     ];

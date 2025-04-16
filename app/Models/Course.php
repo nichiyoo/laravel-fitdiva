@@ -21,5 +21,6 @@ class Course extends Model
     'slug',
     'image',
     'content',
+    'video_url',
   ];
 }

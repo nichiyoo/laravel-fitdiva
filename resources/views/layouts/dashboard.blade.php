@@ -16,6 +16,27 @@
   <link rel="stylesheet" href="{{ asset('dashboard/vendors/font-awesome/css/font-awesome.min.css') }}" />
   <link rel="stylesheet" href="{{ asset('dashboard/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css') }}">
   <link rel="stylesheet" href="{{ asset('dashboard/css/style.css') }}">
+  <style>
+    .page-item {
+      line-height: 1.5;
+    }
+
+    .page-item.active .page-link {
+      background-color: #d291bc;
+      border-color: #d291bc;
+    }
+
+    .page-link,
+    .page-link:hover {
+      color: #d291bc;
+    }
+
+    .page-link:hover {
+      background-color: #fff;
+      box-shadow: 0 0 0 0.2rem rgba(210, 153, 188, 0.25);
+      -webkit-box-shadow: 0 0 0 0.2rem rgba(210, 153, 188, 0.25);
+    }
+  </style>
   @stack('styles')
 </head>
 

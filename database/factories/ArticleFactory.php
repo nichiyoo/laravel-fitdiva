@@ -19,13 +19,19 @@ class ArticleFactory extends Factory
   public function definition(): array
   {
     $title = fake()->sentence();
+    $paragraphs = fake()->paragraphs(10);
+    $paragraphs = array_map(fn($paragraph) => $paragraph . '<br/><br/>', $paragraphs);
+    $paragraphs = implode('', $paragraphs);
 
     return [
       'title' => $title,
-      'image' => fake()->imageUrl(),
-      'content' => fake()->paragraph(),
       'slug' => Str::slug($title),
+      'image' => fake()->imageUrl(),
+      'excerpt' => fake()->paragraph(),
+      'content' => $paragraphs,
       'category_id' => Category::inRandomOrder()->first()->id,
+      'created_at' => fake()->dateTimeBetween('-1 year', 'now'),
+      'updated_at' => fake()->dateTimeBetween('-1 year', 'now'),
     ];
   }
 }

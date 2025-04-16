@@ -21,6 +21,14 @@
     @enderror
   </div>
 
+  <div class="form-group @error('excerpt') has-danger @enderror">
+    <label for="excerpt">Excerpt</label>
+    <textarea class="form-control" id="excerpt" name="excerpt" rows="5" placeholder="Article excerpt...">{{ old('excerpt', $article->excerpt ?? '') }}</textarea>
+    @error('excerpt')
+      <span class="text-danger" role="alert">{{ $message }}</span>
+    @enderror
+  </div>
+
   <div class="form-group @error('content') has-danger @enderror">
     <label for="content">Content</label>
     <textarea class="form-control" id="content" name="content" rows="5" placeholder="Article content...">{{ old('content', $article->content ?? '') }}</textarea>

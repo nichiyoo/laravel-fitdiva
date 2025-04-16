@@ -28,6 +28,7 @@ class UpdateCourseRequest extends FormRequest
       'description' => ['required', 'string'],
       'content' => ['required', 'string'],
       'image' => ['nullable', 'image', 'max:1024'],
+      'video_url' => ['nullable', 'string', 'url'],
     ];
   }
 }
