@@ -9,59 +9,77 @@ use App\Http\Requests\UpdateCourseRequest;
 
 class CourseController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
+  /**
+   * Display a listing of the resource.
+   */
+  public function index()
+  {
+    $courses = Course::all();
+    return view('dashboard.courses.index', [
+      'courses' => $courses,
+    ]);
+  }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+  /**
+   * Show the form for creating a new resource.
+   */
+  public function create()
+  {
+    return view('dashboard.courses.create');
+  }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreCourseRequest $request)
-    {
-        //
-    }
+  /**
+   * Store a newly created resource in storage.
+   */
+  public function store(StoreCourseRequest $request)
+  {
+    $validated = $request->validated();
+    $course = Course::create($validated);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Course $course)
-    {
-        //
-    }
+    return redirect()->route('admin.courses.index')
+      ->with('success', 'Course created successfully.');
+  }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Course $course)
-    {
-        //
-    }
+  /**
+   * Display the specified resource.
+   */
+  public function show(Course $course)
+  {
+    return view('dashboard.courses.show', [
+      'course' => $course,
+    ]);
+  }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateCourseRequest $request, Course $course)
-    {
-        //
-    }
+  /**
+   * Show the form for editing the specified resource.
+   */
+  public function edit(Course $course)
+  {
+    return view('dashboard.courses.edit', [
+      'course' => $course,
+    ]);
+  }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Course $course)
-    {
-        //
-    }
+  /**
+   * Update the specified resource in storage.
+   */
+  public function update(UpdateCourseRequest $request, Course $course)
+  {
+    $validated = $request->validated();
+    $course->update($validated);
+
+    return redirect()->route('admin.courses.index')
+      ->with('success', 'Course updated successfully.');
+  }
+
+  /**
+   * Remove the specified resource from storage.
+   */
+  public function destroy(Course $course)
+  {
+    $course->delete();
+
+    return redirect()->route('admin.courses.index')
+      ->with('success', 'Course deleted successfully.');
+  }
 }

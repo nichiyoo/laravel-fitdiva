@@ -35,12 +35,12 @@
               ],
           ],
           [
-              'id' => 'classs',
-              'label' => 'Manage Classs',
+              'id' => 'course',
+              'label' => 'Manage Courses',
               'icon' => 'mdi mdi-basketball',
               'menus' => [
-                  ['label' => 'List Classes', 'href' => route('admin.courses.index')],
-                  ['label' => 'Create Class', 'href' => route('admin.courses.create')],
+                  ['label' => 'List Courses', 'href' => route('admin.courses.index')],
+                  ['label' => 'Create Courses', 'href' => route('admin.courses.create')],
               ],
           ],
           [

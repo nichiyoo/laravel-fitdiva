@@ -20,9 +20,9 @@
               'hidden' => false,
           ],
           [
-              'label' => 'Classes',
-              'href' => route('landing.classes'),
-              'active' => request()->routeIs('landing.classes'),
+              'label' => 'Courses',
+              'href' => route('landing.courses'),
+              'active' => request()->routeIs('landing.courses'),
               'hidden' => false,
           ],
           [

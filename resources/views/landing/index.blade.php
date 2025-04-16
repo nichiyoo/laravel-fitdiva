@@ -64,7 +64,7 @@
           <h2 class="mb-1">Choose Your Level &amp; Focus</h2>
         </div>
       </div>
-      <x-sports-grid />
+      <x-courses-grid :courses="$courses" />
     </div>
   </section>
 

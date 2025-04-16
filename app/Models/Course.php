@@ -7,6 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
-    /** @use HasFactory<\Database\Factories\CourseFactory> */
-    use HasFactory;
+  /** @use HasFactory<\Database\Factories\CourseFactory> */
+  use HasFactory;
+
+  /**
+   * The attributes that are mass assignable.
+   *
+   * @var array<string>
+   */
+  protected $fillable = [
+    'name',
+    'description',
+    'slug',
+    'image',
+    'content',
+  ];
 }

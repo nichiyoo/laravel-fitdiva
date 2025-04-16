@@ -9,59 +9,77 @@ use App\Http\Requests\UpdateExerciseRequest;
 
 class ExerciseController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
+  /**
+   * Display a listing of the resource.
+   */
+  public function index()
+  {
+    $exercises = Exercise::all();
+    return view('dashboard.exercises.index', [
+      'exercises' => $exercises,
+    ]);
+  }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+  /**
+   * Show the form for creating a new resource.
+   */
+  public function create()
+  {
+    return view('dashboard.exercises.create');
+  }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreExerciseRequest $request)
-    {
-        //
-    }
+  /**
+   * Store a newly created resource in storage.
+   */
+  public function store(StoreExerciseRequest $request)
+  {
+    $validated = $request->validated();
+    $exercise = Exercise::create($validated);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Exercise $exercise)
-    {
-        //
-    }
+    return redirect()->route('admin.exercises.index')
+      ->with('success', 'Exercise created successfully.');
+  }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Exercise $exercise)
-    {
-        //
-    }
+  /**
+   * Display the specified resource.
+   */
+  public function show(Exercise $exercise)
+  {
+    return view('dashboard.exercises.show', [
+      'exercise' => $exercise,
+    ]);
+  }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateExerciseRequest $request, Exercise $exercise)
-    {
-        //
-    }
+  /**
+   * Show the form for editing the specified resource.
+   */
+  public function edit(Exercise $exercise)
+  {
+    return view('dashboard.exercises.edit', [
+      'exercise' => $exercise,
+    ]);
+  }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Exercise $exercise)
-    {
-        //
-    }
+  /**
+   * Update the specified resource in storage.
+   */
+  public function update(UpdateExerciseRequest $request, Exercise $exercise)
+  {
+    $validated = $request->validated();
+    $exercise->update($validated);
+
+    return redirect()->route('admin.exercises.index')
+      ->with('success', 'Exercise updated successfully.');
+  }
+
+  /**
+   * Remove the specified resource from storage.
+   */
+  public function destroy(Exercise $exercise)
+  {
+    $exercise->delete();
+
+    return redirect()->route('admin.exercises.index')
+      ->with('success', 'Exercise deleted successfully.');
+  }
 }
