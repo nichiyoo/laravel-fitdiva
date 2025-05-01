@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Course;
+use App\Models\Exercise;
 use Illuminate\Http\Request;
 
 class LandingController extends Controller
@@ -22,6 +23,14 @@ class LandingController extends Controller
       'articles' => $articles,
     ]);
   }
+  /**
+   * Display about page.
+   */
+  public function about()
+  {
+    return view('landing.about');
+  }
+
 
   /**
    * Display listing of courses.
@@ -55,11 +64,34 @@ class LandingController extends Controller
   }
 
   /**
-   * Display about page.
+   * Display listing of exercises.
    */
-  public function about()
+  public function exercises()
   {
-    return view('landing.about');
+    $exercises = Exercise::all();
+
+    return view('landing.exercises', [
+      'exercises' => $exercises,
+    ]);
+  }
+
+  /**
+   * Display exercise page.
+   */
+  public function exercise(String $slug)
+  {
+    $exercise = Exercise::where('slug', $slug)->firstOrFail();
+
+    $courses = Course::all();
+    $articles = Article::take(3)->get();
+    $categories = Category::all();
+
+    return view('landing.exercise', [
+      'exercise' => $exercise,
+      'courses' => $courses,
+      'articles' => $articles,
+      'categories' => $categories,
+    ]);
   }
 
   /**
@@ -68,17 +100,19 @@ class LandingController extends Controller
   public function articles(Request $request)
   {
     $category = $request->input('category', null);
-    isset($category) && $category = Category::where('slug', $category)->first();
 
     $articles = Article::query()
       ->when($category, function ($query) use ($category) {
-        return $query->where('category_id', $category->id);
+        return $query->whereHas('category', function ($query) use ($category) {
+          return $query->where('slug', $category);
+        });
       })
       ->with('category')
       ->paginate(6);
 
     return view('landing.articles', [
       'articles' => $articles,
+      'category' => $category ? Category::where('slug', $category)->first() : null,
     ]);
   }
 

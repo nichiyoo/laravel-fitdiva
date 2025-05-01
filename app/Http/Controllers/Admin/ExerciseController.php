@@ -34,8 +34,11 @@ class ExerciseController extends Controller
    */
   public function store(StoreExerciseRequest $request)
   {
-    $validated = $request->validated();
+    $validated = $request->except('image');
+
     $exercise = Exercise::create($validated);
+    $exercise->storeImage($request);
+    $exercise->save();
 
     return redirect()->route('admin.exercises.index')
       ->with('success', 'Exercise created successfully.');
@@ -66,8 +69,11 @@ class ExerciseController extends Controller
    */
   public function update(UpdateExerciseRequest $request, Exercise $exercise)
   {
-    $validated = $request->validated();
+    $validated = $request->except('image');
+
     $exercise->update($validated);
+    $exercise->storeImage($request);
+    $exercise->save();
 
     return redirect()->route('admin.exercises.index')
       ->with('success', 'Exercise updated successfully.');
@@ -79,6 +85,7 @@ class ExerciseController extends Controller
   public function destroy(Exercise $exercise)
   {
     $exercise->delete();
+    $exercise->deleteImage();
 
     return redirect()->route('admin.exercises.index')
       ->with('success', 'Exercise deleted successfully.');

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateExerciseRequest extends FormRequest
 {
@@ -23,11 +24,10 @@ class UpdateExerciseRequest extends FormRequest
   {
     return [
       'name' => ['required', 'string', 'max:255', Rule::unique('exercises', 'name')->ignore($this->exercise)],
+      'slug' => ['required', 'string', 'max:255', Rule::unique('exercises', 'slug')->ignore($this->exercise)],
       'description' => ['required', 'string'],
-      'sets' => ['required', 'integer', 'min:1'],
-      'reps' => ['required', 'integer', 'min:1'],
-      'image' => ['nullable', 'image', 'max:1024'],
-      'video' => ['nullable', 'url'],
+      'image' => ['nullable', 'image', 'max:4096'],
+      'video_url' => ['nullable', 'string', 'url'],
     ];
   }
 }

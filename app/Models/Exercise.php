@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasImageUpload;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,6 +10,7 @@ class Exercise extends Model
 {
   /** @use HasFactory<\Database\Factories\ExerciseFactory> */
   use HasFactory;
+  use HasImageUpload;
 
   /**
    * The attributes that are mass assignable.
@@ -21,6 +23,6 @@ class Exercise extends Model
     'image',
     'sets',
     'reps',
-    'video',
+    'video_url',
   ];
 }

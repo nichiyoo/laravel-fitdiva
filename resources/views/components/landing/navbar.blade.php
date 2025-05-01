@@ -26,6 +26,12 @@
               'hidden' => false,
           ],
           [
+              'label' => 'Exercises',
+              'href' => route('landing.exercises'),
+              'active' => request()->routeIs('landing.exercises'),
+              'hidden' => false,
+          ],
+          [
               'label' => 'About',
               'href' => route('landing.about'),
               'active' => request()->routeIs('landing.about'),

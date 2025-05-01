@@ -18,9 +18,14 @@ Route::controller(LandingController::class)
   ->as('landing.')
   ->group(function () {
     Route::get('/', 'index')->name('index');
+    Route::get('/about', 'about')->name('about');
+
     Route::get('/courses', 'courses')->name('courses');
     Route::get('/courses/{course:slug}', 'course')->name('course');
-    Route::get('/about', 'about')->name('about');
+
+    Route::get('/exercises', 'exercises')->name('exercises');
+    Route::get('/exercises/{exercise:slug}', 'exercise')->name('exercise');
+
     Route::get('/articles', 'articles')->name('articles');
     Route::get('/articles/{article:slug}', 'article')->name('article');
   });
@@ -32,9 +37,9 @@ Route::middleware('auth')
   ->as('admin.')
   ->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-    Route::resource('users', UserController::class);
-    Route::resource('courses', CourseController::class);
-    Route::resource('exercises', ExerciseController::class);
-    Route::resource('articles', ArticleController::class);
-    Route::resource('categories', CategoryController::class);
+    Route::resource('users', UserController::class)->except('show');
+    Route::resource('courses', CourseController::class)->except('show');
+    Route::resource('exercises', ExerciseController::class)->except('show');
+    Route::resource('articles', ArticleController::class)->except('show');
+    Route::resource('categories', CategoryController::class)->except('show');
   });

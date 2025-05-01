@@ -27,8 +27,8 @@
               <thead>
                 <tr>
                   <th>Name</th>
-                  <th>Sets</th>
-                  <th>Reps</th>
+                  <th>Slug</th>
+                  <th>Description</th>
                   <th>Last Update</th>
                 </tr>
               </thead>
@@ -42,8 +42,8 @@
                         <span class="ms-2">{{ $exercise->name }}</span>
                       </a>
                     </td>
-                    <td>{{ $exercise->sets }}</td>
-                    <td>{{ $exercise->reps }}</td>
+                    <td>{{ $exercise->slug }}</td>
+                    <td>{{ Str::limit($exercise->description, 50) }}</td>
                     <td>{{ $exercise->updated_at->format('d F Y') }}</td>
                   </tr>
                 @endforeach

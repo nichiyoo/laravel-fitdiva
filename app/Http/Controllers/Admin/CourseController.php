@@ -34,8 +34,11 @@ class CourseController extends Controller
    */
   public function store(StoreCourseRequest $request)
   {
-    $validated = $request->validated();
+    $validated = $request->except('image');
+
     $course = Course::create($validated);
+    $course->storeImage($request);
+    $course->save();
 
     return redirect()->route('admin.courses.index')
       ->with('success', 'Course created successfully.');
@@ -66,8 +69,11 @@ class CourseController extends Controller
    */
   public function update(UpdateCourseRequest $request, Course $course)
   {
-    $validated = $request->validated();
+    $validated = $request->except('image');
+
     $course->update($validated);
+    $course->storeImage($request);
+    $course->save();
 
     return redirect()->route('admin.courses.index')
       ->with('success', 'Course updated successfully.');
@@ -79,6 +85,7 @@ class CourseController extends Controller
   public function destroy(Course $course)
   {
     $course->delete();
+    $course->deleteImage();
 
     return redirect()->route('admin.courses.index')
       ->with('success', 'Course deleted successfully.');

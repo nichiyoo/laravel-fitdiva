@@ -1,12 +1,26 @@
 <x-landing-layout>
-  <x-hero title="Empower Every Step">
-    <x-slot name="breadcrumbs">
-      <span class="mr-2">
-        <a href="{{ route('landing.index') }}">Home</a>
-      </span>
-      <span>Blog</span>
-    </x-slot>
-  </x-hero>
+
+  @isset($category)
+    <x-hero :title="$category->name">
+      <x-slot name="breadcrumbs">
+        <span class="mr-2">
+          <a href="{{ route('landing.index') }}">Home</a>
+        </span>
+        <span class="mr-2">
+          <a href="{{ route('landing.articles') }}">Blog</a>
+        </span>
+      </x-slot>
+    </x-hero>
+  @else
+    <x-hero title="Empower Every Step">
+      <x-slot name="breadcrumbs">
+        <span class="mr-2">
+          <a href="{{ route('landing.index') }}">Home</a>
+        </span>
+        <span>Blog</span>
+      </x-slot>
+    </x-hero>
+  @endisset
 
   <section class="ftco-section bg-light">
     <div class="container">

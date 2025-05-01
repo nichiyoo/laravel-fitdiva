@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,13 +17,14 @@ class ExerciseFactory extends Factory
    */
   public function definition(): array
   {
+    $name = fake()->sentence();
+
     return [
-      'name' => fake()->word(),
+      'name' => $name,
       'description' => fake()->paragraph(),
+      'slug' => Str::slug($name),
       'image' => fake()->imageUrl(),
-      'sets' => fake()->numberBetween(1, 10),
-      'reps' => fake()->numberBetween(1, 10),
-      'video' => fake()->url(),
+      'video_url' => fake()->url(),
     ];
   }
 }

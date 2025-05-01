@@ -1,7 +1,7 @@
 <footer class="ftco-footer ftco-section img">
   <div class="overlay"></div>
   <div class="container">
-    <div class="row mb-5">
+    <div class="row mb-5 align-items-center">
       <div class="col-lg-3 col-md-6 mb-5 mb-md-5 ftco-animate">
         <div class="ftco-footer-widget mb-4">
           <h1 class="logo">{{ config('company.name') }}</h1>

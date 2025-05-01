@@ -16,10 +16,9 @@ return new class extends Migration
       $table->timestamps();
       $table->string('name');
       $table->string('description');
+      $table->string('slug')->unique();
       $table->string('image')->nullable();
-      $table->integer('sets')->default(0);
-      $table->integer('reps')->default(0);
-      $table->string('video')->nullable();
+      $table->string('video_url')->nullable();
     });
   }
 

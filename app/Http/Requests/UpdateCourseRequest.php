@@ -27,7 +27,7 @@ class UpdateCourseRequest extends FormRequest
       'slug' => ['required', 'string', 'max:255', Rule::unique('courses', 'slug')->ignore($this->course)],
       'description' => ['required', 'string'],
       'content' => ['required', 'string'],
-      'image' => ['nullable', 'image', 'max:1024'],
+      'image' => ['nullable', 'image', 'max:4096'],
       'video_url' => ['nullable', 'string', 'url'],
     ];
   }

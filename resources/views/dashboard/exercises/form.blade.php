@@ -13,37 +13,11 @@
     @enderror
   </div>
 
-  <div class="form-group @error('image') has-danger @enderror">
-    <label for="image">Exercise Image</label>
-    <input type="file" class="form-control" id="image" name="image">
-    @error('image')
-      <span class="text-danger" role="alert">{{ $message }}</span>
-    @enderror
-  </div>
-
-  <div class="form-group @error('video') has-danger @enderror">
-    <label for="video">Video URL</label>
-    <input type="text" class="form-control" id="video" name="video" placeholder="YouTube or Vimeo URL"
-      value="{{ old('video', $exercise->video ?? '') }}">
-    @error('video')
-      <span class="text-danger" role="alert">{{ $message }}</span>
-    @enderror
-  </div>
-
-  <div class="form-group @error('sets') has-danger @enderror">
-    <label for="sets">Sets</label>
-    <input type="number" class="form-control" id="sets" name="sets" placeholder="e.g. 3"
-      value="{{ old('sets', $exercise->sets ?? '') }}">
-    @error('sets')
-      <span class="text-danger" role="alert">{{ $message }}</span>
-    @enderror
-  </div>
-
-  <div class="form-group @error('reps') has-danger @enderror">
-    <label for="reps">Reps</label>
-    <input type="number" class="form-control" id="reps" name="reps" placeholder="e.g. 10"
-      value="{{ old('reps', $exercise->reps ?? '') }}">
-    @error('reps')
+  <div class="form-group @error('slug') has-danger @enderror">
+    <label for="slug">Slug</label>
+    <input type="text" class="form-control" id="slug" name="slug" placeholder="course-name-slug"
+      value="{{ old('slug', $exercise->slug ?? '') }}">
+    @error('slug')
       <span class="text-danger" role="alert">{{ $message }}</span>
     @enderror
   </div>
@@ -53,6 +27,23 @@
     <textarea class="form-control" id="description" name="description" rows="4"
       placeholder="Explain how to perform the exercise">{{ old('description', $exercise->description ?? '') }}</textarea>
     @error('description')
+      <span class="text-danger" role="alert">{{ $message }}</span>
+    @enderror
+  </div>
+
+  <div class="form-group @error('image') has-danger @enderror">
+    <label for="image">Cover Image</label>
+    <input type="file" class="form-control" id="image" name="image">
+    @error('image')
+      <span class="text-danger" role="alert">{{ $message }}</span>
+    @enderror
+  </div>
+
+  <div class="form-group @error('video_url') has-danger @enderror">
+    <label for="video_url">Video URL</label>
+    <input type="text" class="form-control" id="video_url" name="video_url" placeholder="YouTube or Vimeo URL"
+      value="{{ old('video_url', $exercise->video_url ?? '') }}">
+    @error('video_url')
       <span class="text-danger" role="alert">{{ $message }}</span>
     @enderror
   </div>
