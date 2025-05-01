@@ -18,6 +18,18 @@
   </div>
 
   <div class="row">
-    {{--  --}}
+    <div class="col-12 col-lg-6 col-xl-3 stretch-card grid-margin">
+      <div class="card bg-gradient-danger card-img-holder text-white">
+        <div class="card-body">
+          <img src="{{ asset('images/ornaments/circle.svg') }}" class="card-img-absolute" alt="circle-image" />
+          <h4 class="font-weight-normal mb-3">
+            Total Exercise Plans
+            <i class="mdi mdi-chart-line mdi-24px float-end"></i>
+          </h4>
+          <h2>{{ $plans }}</h2>
+        </div>
+      </div>
+    </div>
+
   </div>
 </x-dashboard-layout>

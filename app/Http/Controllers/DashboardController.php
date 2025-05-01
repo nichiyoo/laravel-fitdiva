@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\Exercise;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -37,6 +38,10 @@ class DashboardController extends Controller
    */
   public function customer()
   {
-    return view('dashboard.customer');
+    $plans = Auth::user()->plans()->count();
+
+    return view('dashboard.customer', [
+      'plans' => $plans,
+    ]);
   }
 }
