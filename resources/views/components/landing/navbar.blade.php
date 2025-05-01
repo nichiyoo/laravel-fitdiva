@@ -22,13 +22,13 @@
           [
               'label' => 'Courses',
               'href' => route('landing.courses'),
-              'active' => request()->routeIs('landing.courses'),
+              'active' => request()->routeIs('landing.courses') || request()->routeIs('landing.course'),
               'hidden' => false,
           ],
           [
               'label' => 'Exercises',
               'href' => route('landing.exercises'),
-              'active' => request()->routeIs('landing.exercises'),
+              'active' => request()->routeIs('landing.exercises') || request()->routeIs('landing.exercise'),
               'hidden' => false,
           ],
           [
@@ -40,7 +40,7 @@
           [
               'label' => 'Articles',
               'href' => route('landing.articles'),
-              'active' => request()->routeIs('landing.articles'),
+              'active' => request()->routeIs('landing.articles') || request()->routeIs('landing.article'),
               'hidden' => false,
           ],
           [
@@ -51,8 +51,8 @@
           ],
           [
               'label' => 'Dashboard',
-              'href' => route('home'),
-              'active' => request()->routeIs('home'),
+              'href' => route('dashboard'),
+              'active' => request()->routeIs('dashboard'),
               'hidden' => !Auth::check(),
           ],
       ]);

@@ -1,3 +1,5 @@
+@use('App\Enums\RoleType')
+
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
   <ul class="nav">
     <li class="nav-item nav-profile">
@@ -9,13 +11,13 @@
 
         <div class="nav-profile-text d-flex flex-column">
           <span class="font-weight-bold mb-2">{{ Auth::user()->name }}</span>
-          <span class="text-secondary text-small">{{ Auth::user()->role }}</span>
+          <span class="text-secondary text-small">{{ Auth::user()->role->label() }}</span>
         </div>
       </a>
     </li>
 
     <li class="nav-item">
-      <a class="nav-link" href="{{ route('admin.dashboard') }}">
+      <a class="nav-link" href="{{ route('dashboard') }}">
         <span class="menu-title">Dashboard</span>
         <i class="mdi mdi-home menu-icon"></i>
       </a>
@@ -27,6 +29,7 @@
               'id' => 'users',
               'label' => 'Manage Users',
               'icon' => 'mdi mdi-account-multiple',
+              'hidden' => Auth::user()->role !== RoleType::ADMIN,
               'menus' => [
                   ['label' => 'List Users', 'href' => route('admin.users.index')],
                   ['label' => 'List Customer', 'href' => route('admin.users.index', ['role' => 'Customer'])],
@@ -38,6 +41,7 @@
               'id' => 'course',
               'label' => 'Manage Courses',
               'icon' => 'mdi mdi-basketball',
+              'hidden' => Auth::user()->role !== RoleType::ADMIN,
               'menus' => [
                   ['label' => 'List Courses', 'href' => route('admin.courses.index')],
                   ['label' => 'Create Courses', 'href' => route('admin.courses.create')],
@@ -47,6 +51,7 @@
               'id' => 'exercises',
               'label' => 'Manage Exercises',
               'icon' => 'mdi mdi-dumbbell',
+              'hidden' => Auth::user()->role !== RoleType::ADMIN,
               'menus' => [
                   ['label' => 'List Exercises', 'href' => route('admin.exercises.index')],
                   ['label' => 'Create Exercise', 'href' => route('admin.exercises.create')],
@@ -56,6 +61,7 @@
               'id' => 'articles',
               'label' => 'Manage Articles',
               'icon' => 'mdi mdi-post-outline',
+              'hidden' => Auth::user()->role !== RoleType::ADMIN,
               'menus' => [
                   ['label' => 'List Categories', 'href' => route('admin.categories.index')],
                   ['label' => 'Create Category', 'href' => route('admin.categories.create')],
@@ -67,6 +73,8 @@
     @endphp
 
     @foreach ($menus as $menu)
+      @continue($menu->hidden)
+
       <x-dashboard.sidenav id="{{ $menu->id }}" label="{{ $menu->label }}" icon="{{ $menu->icon }}">
         @foreach ($menu->menus as $submenu)
           <li class="nav-item">
@@ -75,12 +83,5 @@
         @endforeach
       </x-dashboard.sidenav>
     @endforeach
-
-    <li class="nav-item">
-      <a class="nav-link" href="docs/documentation.html" target="_blank">
-        <span class="menu-title">Documentation</span>
-        <i class="mdi mdi-file-document-box menu-icon"></i>
-      </a>
-    </li>
   </ul>
 </nav>

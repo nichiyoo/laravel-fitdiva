@@ -16,7 +16,7 @@ class LandingController extends Controller
   public function index()
   {
     $courses = Course::all();
-    $articles = Article::take(3)->get();
+    $articles = Article::with('category')->take(3)->get();
 
     return view('landing.index', [
       'courses' => $courses,

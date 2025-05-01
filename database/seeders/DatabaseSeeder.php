@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\RoleType;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -15,12 +16,13 @@ class DatabaseSeeder extends Seeder
     User::factory()->create([
       'name' => 'Administrator',
       'email' => 'admin@example.com',
-      'role' => 'Administrator',
+      'role' => RoleType::ADMIN,
     ]);
 
     User::factory()->create([
       'name' => 'Test User',
       'email' => 'test@example.com',
+      'role' => RoleType::CUSTOMER,
     ]);
 
     $this->call([

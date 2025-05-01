@@ -39,8 +39,11 @@ class ArticleController extends Controller
    */
   public function store(StoreArticleRequest $request)
   {
-    $validated = $request->validated();
+    $validated = $request->except('image');
+
     $article = Article::create($validated);
+    $article->storeImage($request);
+    $article->save();
 
     return redirect()->route('admin.articles.index')
       ->with('success', 'Article created successfully.');
@@ -74,8 +77,11 @@ class ArticleController extends Controller
    */
   public function update(UpdateArticleRequest $request, Article $article)
   {
-    $validated = $request->validated();
+    $validated = $request->except('image');
+
     $article->update($validated);
+    $article->storeImage($request);
+    $article->save();
 
     return redirect()->route('admin.articles.index')
       ->with('success', 'Article updated successfully.');
@@ -87,6 +93,7 @@ class ArticleController extends Controller
   public function destroy(Article $article)
   {
     $article->delete();
+    $article->deleteImage();
 
     return redirect()->route('admin.articles.index')
       ->with('success', 'Article deleted successfully.');

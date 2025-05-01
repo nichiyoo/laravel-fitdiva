@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\RoleType;
 use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +13,6 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LandingController;
 
 Route::get('/', fn() => redirect()->route('landing.index'))->name('welcome');
-Route::get('/dashboard', fn() => redirect()->route('admin.dashboard'))->name('home');
 
 Route::controller(LandingController::class)
   ->as('landing.')
@@ -33,13 +33,31 @@ Route::controller(LandingController::class)
 Auth::routes();
 
 Route::middleware('auth')
+  ->get('/dashboard', function () {
+    switch (Auth::user()->role) {
+      case RoleType::ADMIN:
+        return redirect()->route('admin.dashboard');
+      default:
+        return redirect()->route('customer.dashboard');
+    }
+  })
+  ->name('dashboard');
+
+Route::middleware('auth', 'role:admin')
   ->prefix('admin')
   ->as('admin.')
   ->group(function () {
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'admin'])->name('dashboard');
     Route::resource('users', UserController::class)->except('show');
     Route::resource('courses', CourseController::class)->except('show');
     Route::resource('exercises', ExerciseController::class)->except('show');
     Route::resource('articles', ArticleController::class)->except('show');
     Route::resource('categories', CategoryController::class)->except('show');
+  });
+
+Route::middleware('auth', 'role:customer')
+  ->prefix('customer')
+  ->as('customer.')
+  ->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'customer'])->name('dashboard');
   });

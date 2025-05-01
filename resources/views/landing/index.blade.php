@@ -21,7 +21,7 @@
           </h1>
           <h2 class="mb-5">Do Sports today for a better tomorrow</h2>
           @auth
-            <a href="{{ route('home') }}" class="btn btn-primary p-3 px-4">Dashboard</a>
+            <a href="{{ route('dashboard') }}" class="btn btn-primary p-3 px-4">Dashboard</a>
           @else
             <a href="{{ route('login') }}" class="btn btn-primary p-3 px-4">Login</a>
           @endauth
