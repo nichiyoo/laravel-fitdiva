@@ -59,8 +59,8 @@
       -webkit-box-shadow: none;
     }
 
-    textarea.form-control {
-      line-height: 2;
+    textarea:not(.editor) {
+      line-height: 1.2;
     }
   </style>
   @stack('styles')
@@ -96,5 +96,18 @@
   <script src="{{ asset('dashboard/js/todolist.js') }}"></script>
   <script src="{{ asset('dashboard/js/jquery.cookie.js') }}"></script>
   <script src="{{ asset('dashboard/js/dashboard.js') }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.6.1/tinymce.min.js" referrerpolicy="origin"></script>
+  <script>
+    tinymce.init({
+      selector: 'textarea.editor',
+      content_css: 'writer',
+      license_key: 'gpl',
+      plugins: 'lists',
+      statusbar: false,
+      menubar: false,
+      height: 720,
+      toolbar: 'undo redo | blocks | bold italic underline | alignleft aligncenter alignright | indent outdent | bullist numlist'
+    });
+  </script>
   @stack('scripts')
 </body>

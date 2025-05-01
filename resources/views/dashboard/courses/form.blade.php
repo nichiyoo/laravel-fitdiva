@@ -50,7 +50,8 @@
 
   <div class="form-group @error('content') has-danger @enderror">
     <label for="content">Course Content</label>
-    <textarea class="form-control" id="content" name="content" rows="5" placeholder="Full content of the course">{{ old('content', $course->content ?? '') }}</textarea>
+    <textarea class="form-control editor" id="content" name="content" rows="5"
+      placeholder="Full content of the course">{{ old('content', $course->content ?? '') }}</textarea>
     @error('content')
       <span class="text-danger" role="alert">{{ $message }}</span>
     @enderror
