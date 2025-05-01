@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class StoreCategoryRequest extends FormRequest
+class UpdatePlanRequest extends FormRequest
 {
   /**
    * Determine if the user is authorized to make this request.
@@ -24,8 +23,12 @@ class StoreCategoryRequest extends FormRequest
   {
     return [
       'name' => ['required', 'string', 'max:255'],
-      'slug' => ['required', 'string', 'max:255', Rule::unique('categories', 'slug')],
+      'month' => ['required', 'integer', 'min:0'],
       'description' => ['required', 'string'],
+      'image' => ['nullable', 'image', 'max:2048'],
+      'sets' => ['required', 'integer', 'min:1'],
+      'reps' => ['required', 'integer', 'min:1'],
+      'exercise_id' => ['required', 'exists:exercises,id'],
     ];
   }
 }

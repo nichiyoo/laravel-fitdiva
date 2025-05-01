@@ -69,6 +69,16 @@
                   ['label' => 'Create Article', 'href' => route('admin.articles.create')],
               ],
           ],
+          [
+              'id' => 'plans',
+              'label' => 'Manage Plans',
+              'icon' => 'mdi mdi-book-open-page-variant',
+              'hidden' => false,
+              'menus' => [
+                  ['label' => 'List Plans', 'href' => route('customer.plans.index')],
+                  ['label' => 'Create Plan', 'href' => route('customer.plans.create')],
+              ],
+          ],
       ]);
     @endphp
 

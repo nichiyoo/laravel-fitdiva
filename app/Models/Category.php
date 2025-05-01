@@ -23,7 +23,7 @@ class Category extends Model
   ];
 
   /**
-   * The relation to the articles.
+   * Model relationship with the Article model.
    *
    * @return \Illuminate\Database\Eloquent\Relations\HasMany
    */

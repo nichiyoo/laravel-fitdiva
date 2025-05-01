@@ -23,12 +23,12 @@ class UpdateArticleRequest extends FormRequest
   public function rules(): array
   {
     return [
-      'title' => ['required', 'string', 'max:255', Rule::unique('articles', 'title')->ignore($this->article)],
+      'title' => ['required', 'string', 'max:255'],
       'slug' => ['required', 'string', 'max:255', Rule::unique('articles', 'slug')->ignore($this->article)],
       'category_id' => ['required', 'exists:categories,id'],
       'excerpt' => ['required', 'string'],
       'content' => ['required', 'string'],
-      'image' => ['nullable', 'image', 'max:1024'],
+      'image' => ['nullable', 'image', 'max:2048'],
     ];
   }
 }

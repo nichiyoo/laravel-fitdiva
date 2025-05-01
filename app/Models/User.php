@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Enums\RoleType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -48,5 +49,15 @@ class User extends Authenticatable
       'password' => 'hashed',
       'role' => RoleType::class,
     ];
+  }
+
+  /**
+   * Model relationship with the Plan model.
+   *
+   * @return \Illuminate\Database\Eloquent\Relations\HasMany
+   */
+  public function plans(): HasMany
+  {
+    return $this->hasMany(Plan::class);
   }
 }

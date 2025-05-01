@@ -23,10 +23,10 @@ class StoreExerciseRequest extends FormRequest
   public function rules(): array
   {
     return [
-      'name' => ['required', 'string', 'max:255', Rule::unique('exercises', 'name')],
+      'name' => ['required', 'string', 'max:255'],
       'slug' => ['required', 'string', 'max:255', Rule::unique('exercises', 'slug')],
       'description' => ['required', 'string'],
-      'image' => ['nullable', 'image', 'max:4096'],
+      'image' => ['nullable', 'image', 'max:2048'],
       'video_url' => ['nullable', 'string', 'url'],
     ];
   }

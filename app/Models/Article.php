@@ -28,7 +28,7 @@ class Article extends Model
   ];
 
   /**
-   * The relation to the category.
+   * Model relationship with the Category model.
    *
    * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
    */

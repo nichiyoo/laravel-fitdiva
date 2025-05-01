@@ -38,7 +38,7 @@
                     <td>
                       <a href="{{ route('admin.exercises.edit', $exercise) }}"
                         class="text-primary text-decoration-none">
-                        <x-ui.avatar name="{{ $exercise->name }}" />
+                        <x-ui.thumbnail src="{{ $exercise->image }}" alt="{{ $exercise->title }}" />
                         <span class="ms-2">{{ $exercise->name }}</span>
                       </a>
                     </td>

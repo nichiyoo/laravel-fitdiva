@@ -2,9 +2,9 @@
   <div class="page-header">
     <h3 class="page-title">
       <span class="page-title-icon bg-gradient-primary text-white me-2">
-        <i class="mdi mdi-play-circle"></i>
+        <i class="mdi mdi-book-open-page-variant"></i>
       </span>
-      Course Management
+      plan Management
     </h3>
 
     <nav aria-label="breadcrumb">
@@ -21,29 +21,33 @@
     <div class="col-12 grid-margin">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Course List</h4>
+          <h4 class="card-title">plan List</h4>
           <div class="table-responsive">
             <table class="table">
               <thead>
                 <tr>
                   <th>Name</th>
-                  <th>Slug</th>
                   <th>Description</th>
-                  <th>Last Update</th>
+                  <th>Duration</th>
+                  <th>Sets</th>
+                  <th>Reps</th>
+                  <th>Exercise</th>
                 </tr>
               </thead>
               <tbody>
-                @foreach ($courses as $course)
+                @foreach ($plans as $plan)
                   <tr>
                     <td>
-                      <a href="{{ route('admin.courses.edit', $course) }}" class="text-primary text-decoration-none">
-                        <x-ui.thumbnail src="{{ $course->image }}" alt="{{ $course->name }}" />
-                        <span class="ms-2">{{ $course->name }}</span>
+                      <a href="{{ route('customer.plans.edit', $plan) }}" class="text-primary text-decoration-none">
+                        <x-ui.thumbnail src="{{ $plan->image }}" alt="{{ $plan->title }}" />
+                        <span class="ms-2">{{ $plan->name }}</span>
                       </a>
                     </td>
-                    <td>{{ $course->slug }}</td>
-                    <td>{{ Str::limit($course->description, 50) }}</td>
-                    <td>{{ $course->updated_at->format('d F Y') }}</td>
+                    <td>{{ Str::limit($plan->description, 50) }}</td>
+                    <td>{{ $plan->month }} Month</td>
+                    <td>{{ $plan->sets }}</td>
+                    <td>{{ $plan->reps }}</td>
+                    <td>{{ $plan->exercise->name }}</td>
                   </tr>
                 @endforeach
               </tbody>
@@ -51,7 +55,7 @@
           </div>
 
           <div class="mt-5">
-            {{ $courses->links() }}
+            {{ $plans->links() }}
           </div>
         </div>
       </div>

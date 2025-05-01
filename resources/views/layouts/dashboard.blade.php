@@ -36,6 +36,32 @@
       box-shadow: 0 0 0 0.2rem rgba(210, 153, 188, 0.25);
       -webkit-box-shadow: 0 0 0 0.2rem rgba(210, 153, 188, 0.25);
     }
+
+    .form-select {
+      border: 1px solid #ebedf2;
+      font-family: "ubuntu-regular", sans-serif;
+      display: block;
+      width: 100%;
+      padding: 0.94rem 1.375rem !important;
+      font-size: 0.8125rem;
+      line-height: 1;
+      appearance: none;
+      color: var(--bs-body-color) !important;
+      border: var(--bs-border-width) solid var(--bs-border-color);
+      border-radius: 2px;
+      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+      box-shadow: none;
+      -webkit-box-shadow: none;
+    }
+
+    .form-select:focus {
+      box-shadow: none;
+      -webkit-box-shadow: none;
+    }
+
+    textarea.form-control {
+      line-height: 2;
+    }
   </style>
   @stack('styles')
 </head>
@@ -47,6 +73,12 @@
       <x-dashboard.sidebar />
       <div class="main-panel">
         <div class="content-wrapper">
+          @if (session('success'))
+            <p class="text-success mb-4">
+              {{ session('success') }}
+            </p>
+          @endif
+
           {{ $slot }}
         </div>
         <x-dashboard.footer />

@@ -37,7 +37,7 @@
                   <tr>
                     <td>
                       <a href="{{ route('admin.articles.edit', $article) }}" class="text-primary text-decoration-none">
-                        <x-ui.avatar name="{{ $article->title }}" />
+                        <x-ui.thumbnail src="{{ $article->image }}" alt="{{ $article->title }}" />
                         <span class="ms-2">{{ $article->title }}</span>
                       </a>
                     </td>
