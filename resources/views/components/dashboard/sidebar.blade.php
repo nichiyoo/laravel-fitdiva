@@ -5,7 +5,7 @@
     <li class="nav-item nav-profile">
       <a href="#" class="nav-link">
         <div class="nav-profile-image">
-          <x-ui.avatar name="{{ Auth::user()->name }}" />
+          <x-ui.avatar name="{{ Auth::user()->name }}" image="{{ Auth::user()->image }}" />
           <span class="login-status online"></span>
         </div>
 
@@ -26,14 +26,21 @@
     @php
       $menus = array_to_object([
           [
+              'id' => 'accounts',
+              'label' => 'Account',
+              'icon' => 'mdi mdi-account-key',
+              'hidden' => false,
+              'menus' => [['label' => 'Update Profile', 'href' => route('profile.index')]],
+          ],
+          [
               'id' => 'users',
               'label' => 'Manage Users',
               'icon' => 'mdi mdi-account-multiple',
               'hidden' => Auth::user()->role !== RoleType::ADMIN,
               'menus' => [
                   ['label' => 'List Users', 'href' => route('admin.users.index')],
-                  ['label' => 'List Customer', 'href' => route('admin.users.index', ['role' => 'Customer'])],
-                  ['label' => 'List Admins', 'href' => route('admin.users.index', ['role' => 'Administrator'])],
+                  ['label' => 'List Customer', 'href' => route('admin.users.index', ['role' => RoleType::CUSTOMER])],
+                  ['label' => 'List Admins', 'href' => route('admin.users.index', ['role' => RoleType::ADMIN])],
                   ['label' => 'Create User', 'href' => route('admin.users.create')],
               ],
           ],

@@ -2,15 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\RoleType;
 use App\Models\Article;
 use App\Models\Course;
 use App\Models\Exercise;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
+  /**
+   * Handle the redirection for each role dashboard.
+   *
+   * @return \Illuminate\Http\RedirectResponse
+   */
+  public function index()
+  {
+    return match (Auth::user()->role) {
+      RoleType::ADMIN => redirect()->route('admin.dashboard'),
+      default => redirect()->route('customer.dashboard'),
+    };
+  }
+
+
+
+
   /**
    * Show the application admin dashboard.
    *

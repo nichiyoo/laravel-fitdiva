@@ -2,8 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\RoleType;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Enum;
 
 class UpdateUserRequest extends FormRequest
 {
@@ -25,7 +27,11 @@ class UpdateUserRequest extends FormRequest
     return [
       'name' => ['required', 'string', 'max:255'],
       'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($this->user)],
-      'role' => ['required', 'string', 'in:Customer,Administrator'],
+      'role' => ['required', new Enum(RoleType::class)],
+      'birthdate' => ['required', 'date', 'before:today'],
+      'weight' => ['required', 'integer', 'min:0'],
+      'height' => ['required', 'integer', 'min:0'],
+      'image' => ['nullable', 'image', 'max:2048'],
     ];
   }
 }

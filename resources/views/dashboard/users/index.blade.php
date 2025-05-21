@@ -39,7 +39,7 @@
                   <tr>
                     <td>
                       <a href="{{ route('admin.users.edit', $user) }}" class="text-primary text-decoration-none">
-                        <x-ui.avatar name="{{ $user->name }}" />
+                        <x-ui.avatar name="{{ $user->name }}" image="{{ $user->image }}" />
                         <span class="ms-2">{{ $user->name }}</span>
                       </a>
                     </td>

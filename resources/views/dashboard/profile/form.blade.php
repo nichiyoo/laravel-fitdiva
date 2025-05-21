@@ -22,45 +22,29 @@
     @enderror
   </div>
 
-  @if ($method === 'POST')
-    <div class="row">
-      <div class="form-group col-6 pe-2 @error('password') has-danger @enderror">
-        <label for="password">Current Password</label>
-        <input type="password" class="form-control" id="password" name="password" placeholder="Current Password">
-        @error('password')
-          <span class="text-danger" role="alert">{{ $message }}</span>
-        @enderror
-      </div>
-
-      <div class="form-group col-6 ps-2 @error('password_confirmation') has-danger @enderror">
-        <label for="password_confirmation">Confirm Password</label>
-        <input type="password" class="form-control" id="password_confirmation" name="password_confirmation"
-          placeholder="Confirm Password">
-        @error('password_confirmation')
-          <span class="text-danger" role="alert">{{ $message }}</span>
-        @enderror
-      </div>
+  <div class="row">
+    <div class="form-group col-6 pe-2 @error('password') has-danger @enderror">
+      <label for="password">Current Password</label>
+      <input type="password" class="form-control" id="password" name="password" placeholder="Current Password">
+      @error('password')
+        <span class="text-danger" role="alert">{{ $message }}</span>
+      @enderror
     </div>
-  @endif
 
-  <div class="form-group @error('role') has-danger @enderror">
-    <label for="role">Role</label>
-    <select class="form-select" id="role" name="role">
-      @foreach ($roles as $role)
-        <option value="{{ $role->value }}" @selected($role->value === old('role', $user->role->value ?? ''))>
-          {{ $role->label() }}
-        </option>
-      @endforeach
-    </select>
-    @error('role')
-      <span class="text-danger" role="alert">{{ $message }}</span>
-    @enderror
+    <div class="form-group col-6 ps-2 @error('password_confirmation') has-danger @enderror">
+      <label for="password_confirmation">Confirm Password</label>
+      <input type="password" class="form-control" id="password_confirmation" name="password_confirmation"
+        placeholder="Confirm Password">
+      @error('password_confirmation')
+        <span class="text-danger" role="alert">{{ $message }}</span>
+      @enderror
+    </div>
   </div>
 
   <div class="form-group @error('birthdate') has-danger @enderror">
     <label for="birthdate">Birthdate</label>
     <input type="date" class="form-control" id="birthdate" name="birthdate" placeholder="Birthdate"
-      value="{{ old('birthdate', $user->birthdate?->format('Y-m-d') ?? '') }}">
+      value="{{ old('birthdate', $user->birthdate->format('Y-m-d') ?? '') }}">
     @error('birthdate')
       <span class="text-danger" role="alert">{{ $message }}</span>
     @enderror

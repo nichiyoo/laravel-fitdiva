@@ -19,20 +19,48 @@
       @enderror
     </div>
 
-    <div class="form-group @error('password') has-danger @enderror">
-      <input type="password" class="form-control form-control-lg" id="password" name="password"
-        autocomplete="new-password" placeholder="Create a password" required>
-      @error('password')
+    <div class="row">
+      <div class="form-group col-6 pe-2 @error('password') has-danger @enderror">
+        <input type="password" class="form-control form-control-lg" id="password" name="password"
+          autocomplete="new-password" placeholder="Create a password" required>
+        @error('password')
+          <span class="text-danger" role="alert">{{ $message }}</span>
+        @enderror
+      </div>
+
+      <div class="form-group col-6 ps-2 @error('password_confirmation') has-danger @enderror">
+        <input type="password" class="form-control form-control-lg" id="password_confirmation"
+          name="password_confirmation" autocomplete="new-password" placeholder="Confirm your password" required>
+        @error('password_confirmation')
+          <span class="text-danger" role="alert">{{ $message }}</span>
+        @enderror
+      </div>
+    </div>
+
+    <div class="form-group @error('birthdate') has-danger @enderror">
+      <input type="date" class="form-control form-control-lg" id="birthdate" name="birthdate"
+        value="{{ old('birthdate') }}" placeholder="Your birthdate" required>
+      @error('birthdate')
         <span class="text-danger" role="alert">{{ $message }}</span>
       @enderror
     </div>
 
-    <div class="form-group @error('password_confirmation') has-danger @enderror">
-      <input type="password" class="form-control form-control-lg" id="password_confirmation"
-        name="password_confirmation" autocomplete="new-password" placeholder="Confirm your password" required>
-      @error('password_confirmation')
-        <span class="text-danger" role="alert">{{ $message }}</span>
-      @enderror
+    <div class="row">
+      <div class="form-group col-6 pe-2 @error('weight') has-danger @enderror">
+        <input type="number" class="form-control form-control-lg" id="weight" name="weight"
+          value="{{ old('weight') }}" placeholder="Your weight (kg)" required>
+        @error('weight')
+          <span class="text-danger" role="alert">{{ $message }}</span>
+        @enderror
+      </div>
+
+      <div class="form-group col-6 ps-2 @error('height') has-danger @enderror">
+        <input type="number" class="form-control form-control-lg" id="height" name="height"
+          value="{{ old('height') }}" placeholder="Your height (cm)" required>
+        @error('height')
+          <span class="text-danger" role="alert">{{ $message }}</span>
+        @enderror
+      </div>
     </div>
 
     <div class="mb-4">

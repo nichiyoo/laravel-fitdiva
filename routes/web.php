@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\PlanController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', fn() => redirect()->route('landing.index'))->name('welcome');
 
@@ -30,16 +31,11 @@ Route::controller(LandingController::class)
 
 Auth::routes();
 
-Route::middleware('auth')
-  ->get('/dashboard', function () {
-    switch (Auth::user()->role) {
-      case RoleType::ADMIN:
-        return redirect()->route('admin.dashboard');
-      default:
-        return redirect()->route('customer.dashboard');
-    }
-  })
-  ->name('dashboard');
+Route::middleware('auth')->group(function () {
+  Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+  Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+  Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+});
 
 Route::middleware('auth', 'role:admin')
   ->prefix('admin')

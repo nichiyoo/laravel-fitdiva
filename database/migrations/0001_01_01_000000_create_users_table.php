@@ -21,6 +21,10 @@ return new class extends Migration
       $table->timestamp('email_verified_at')->nullable();
       $table->string('password');
       $table->enum('role', array_map(fn($role) => $role->value, $roles))->default(RoleType::CUSTOMER->value);
+      $table->date('birthdate');
+      $table->integer('weight');
+      $table->integer('height');
+      $table->string('image')->nullable();
       $table->rememberToken();
       $table->timestamps();
     });

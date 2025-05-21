@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\RoleType;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
@@ -33,7 +34,9 @@ class UserController extends Controller
    */
   public function create()
   {
-    return view('dashboard.users.create');
+    return view('dashboard.users.create', [
+      'roles' => RoleType::cases(),
+    ]);
   }
 
   /**
@@ -41,8 +44,11 @@ class UserController extends Controller
    */
   public function store(StoreUserRequest $request)
   {
-    $validated = $request->validated();
-    User::create($validated);
+    $validated = $request->except('image');
+
+    $user = User::create($validated);
+    $user->storeImage($request);
+    $user->save();
 
     return redirect()
       ->route('admin.users.index')
@@ -64,6 +70,7 @@ class UserController extends Controller
   {
     return view('dashboard.users.edit', [
       'user' => $user,
+      'roles' => RoleType::cases(),
     ]);
   }
 
@@ -72,8 +79,11 @@ class UserController extends Controller
    */
   public function update(UpdateUserRequest $request, User $user)
   {
-    $validated = $request->validated();
+    $validated = $request->except('image');
+
     $user->update($validated);
+    $user->storeImage($request);
+    $user->save();
 
     return redirect()
       ->route('admin.users.index')
@@ -85,6 +95,7 @@ class UserController extends Controller
    */
   public function destroy(User $user)
   {
+    $user->deleteImage();
     $user->delete();
 
     return redirect()

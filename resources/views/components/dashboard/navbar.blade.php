@@ -25,7 +25,7 @@
         <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown"
           aria-expanded="false">
           <div class="nav-profile-img">
-            <x-ui.avatar name="{{ Auth::user()->name }}" />
+            <x-ui.avatar name="{{ Auth::user()->name }}" image="{{ Auth::user()->image }}" />
             <span class="availability-status online"></span>
           </div>
 
@@ -35,6 +35,11 @@
         </a>
 
         <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+          <a class="dropdown-item" href="{{ route('profile.index') }}">
+            <i class="mdi mdi-account me-2 text-primary"></i>
+            <span>Profile</span>
+          </a>
+
           <a id="logout-button" class="dropdown-item" hrhref="{{ route('logout') }}">
             <i class="mdi mdi-logout me-2 text-primary"></i>
             <span>Signout</span>

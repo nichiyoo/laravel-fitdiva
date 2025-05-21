@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Enums\RoleType;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Enum;
 
-class StoreUserRequest extends FormRequest
+class UpdateProfileRequest extends FormRequest
 {
   /**
    * Determine if the user is authorized to make this request.
@@ -25,13 +23,12 @@ class StoreUserRequest extends FormRequest
   {
     return [
       'name' => ['required', 'string', 'max:255'],
-      'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-      'password' => ['required', 'string', 'min:8', 'confirmed'],
-      'role' => ['required', new Enum(RoleType::class)],
+      'email' => ['required', 'string', 'email', 'max:255'],
+      'password' => ['nullable', 'string', 'min:8', 'confirmed'],
       'birthdate' => ['required', 'date', 'before:today'],
       'weight' => ['required', 'integer', 'min:0'],
       'height' => ['required', 'integer', 'min:0'],
-      'image' => ['required', 'image', 'max:2048'],
+      'image' => ['nullable', 'image', 'max:2048'],
     ];
   }
 }
