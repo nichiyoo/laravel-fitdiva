@@ -32,6 +32,7 @@
                   <th>Sets</th>
                   <th>Reps</th>
                   <th>Exercise</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -48,6 +49,16 @@
                     <td>{{ $plan->sets }}</td>
                     <td>{{ $plan->reps }}</td>
                     <td>{{ $plan->exercise->name }}</td>
+                    <td>
+                      <form action="{{ route('customer.plans.destroy', $plan) }}" method="POST" class="d-inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-outline-danger btn-sm"
+                          onclick="return confirm('Are you sure you want to delete this plan?')">
+                          <i class="mdi mdi-delete"></i>
+                        </button>
+                      </form>
+                    </td>
                   </tr>
                 @endforeach
               </tbody>

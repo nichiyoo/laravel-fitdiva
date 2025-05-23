@@ -30,6 +30,7 @@
                   <th>Slug</th>
                   <th>Description</th>
                   <th>Last Update</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -44,6 +45,16 @@
                     <td>{{ $course->slug }}</td>
                     <td>{{ Str::limit($course->description, 50) }}</td>
                     <td>{{ $course->updated_at->format('d F Y') }}</td>
+                    <td>
+                      <form action="{{ route('admin.courses.destroy', $course) }}" method="POST" class="d-inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-outline-danger btn-sm"
+                          onclick="return confirm('Are you sure you want to delete this course?')">
+                          <i class="mdi mdi-delete"></i>
+                        </button>
+                      </form>
+                    </td>
                   </tr>
                 @endforeach
               </tbody>

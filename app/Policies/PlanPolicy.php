@@ -53,7 +53,7 @@ class PlanPolicy
    */
   public function restore(User $user, Plan $plan): bool
   {
-    return $plan->user()->is($user);
+    return false;
   }
 
   /**
@@ -61,6 +61,6 @@ class PlanPolicy
    */
   public function forceDelete(User $user, Plan $plan): bool
   {
-    return $plan->user()->is($user);
+    return false;
   }
 }

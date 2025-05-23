@@ -30,6 +30,7 @@
                   <th>Slug</th>
                   <th>Category</th>
                   <th>Last Update</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -44,6 +45,16 @@
                     <td>{{ $article->slug }}</td>
                     <td>{{ $article->category->name ?? '-' }}</td>
                     <td>{{ $article->updated_at->format('d F Y') }}</td>
+                    <td>
+                      <form action="{{ route('admin.articles.destroy', $article) }}" method="POST" class="d-inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-outline-danger btn-sm"
+                          onclick="return confirm('Are you sure you want to delete this article?')">
+                          <i class="mdi mdi-delete"></i>
+                        </button>
+                      </form>
+                    </td>
                   </tr>
                 @endforeach
               </tbody>
