@@ -13,6 +13,15 @@
     @enderror
   </div>
 
+  <div class="form-group @error('slug') has-danger @enderror">
+    <label for="slug">Slug</label>
+    <input type="text" class="form-control" id="slug" name="slug" placeholder="article-title-slug"
+      value="{{ old('slug', $article->slug ?? '') }}">
+    @error('slug')
+      <span class="text-danger" role="alert">{{ $message }}</span>
+    @enderror
+  </div>
+
   <div class="form-group @error('image') has-danger @enderror">
     <label for="image">Image</label>
     <input type="file" class="form-control" id="image" name="image">

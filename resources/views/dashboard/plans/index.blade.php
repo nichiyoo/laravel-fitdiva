@@ -4,7 +4,7 @@
       <span class="page-title-icon bg-gradient-primary text-white me-2">
         <i class="mdi mdi-book-open-page-variant"></i>
       </span>
-      plan Management
+      Plan Management
     </h3>
 
     <nav aria-label="breadcrumb">
